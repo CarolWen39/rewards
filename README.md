@@ -21,7 +21,7 @@
 
 **Respond:**
 ```json
-rewards
+90
 ```
 
 ### GET --  get customer {id} rewards in {month}
@@ -32,7 +32,7 @@ rewards
 
 **Respond:**
 ```json
-rewards
+0
 ```
 
 
@@ -46,6 +46,6 @@ rewards
 
 **Respond:**
 ```json
-id 
+1 
 ```
 
