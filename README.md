@@ -49,3 +49,46 @@
 1 
 ```
 
+
+### PUT
+
+**Request url:** localhost:8080/customers/1
+
+**Respond code:** 200 OK
+
+**Respond:**
+```json
+1 
+```
+
+
+
+### DELETE
+
+**Request url:** localhost:8080/customers/1
+
+**Respond code:** 200 OK
+
+**Respond:**
+```json
+1 
+```
+
+
+
+## Transcations API
+
+
+### POST
+
+**Request url:** localhost:8080/transcations
+
+**Request body:** raw json format
+
+**Respond code:** 201 CREATED
+
+**Respond:**
+```json
+2
+```
+
