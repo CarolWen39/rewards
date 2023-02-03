@@ -48,34 +48,26 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public double getTotalRewards(Long id) {
         Collection<Transaction> transactions = transactionRepository.findTransactionByCustomerId(id);
+        return calculateReward(transactions);
+    }
+
+    public double calculateReward(Collection<Transaction> transactions) {
         double rewards = 0;
         for(Transaction t: transactions) {
             double price = t.getPrice();
-            rewards += calculateReward(price);
+            if(price > 50 && price < 100) {
+                rewards += price-50;
+            }
+            else {
+                rewards += price > 100 ? 2 * (price-100) + 50 : 0;
+            }
         }
         return rewards;
-    }
-
-    private double calculateReward(double price) {
-        double reward = 0;
-        if(price > 50 && price < 100) {
-            reward = price-50;
-        }
-        else {
-            reward = price > 100 ? 2 * (price-100) + 50 : 0;
-        }
-        return reward;
     }
     @Override
     public double getMonthRewards(Long id, int month) {
         Collection<Transaction> transactions = transactionRepository.findTransactionByCustomerIdAndMonth(id, month);
-        double rewards = 0;
-        for(Transaction t: transactions) {
-            double price = t.getPrice();
-            System.out.println(rewards);
-            rewards += calculateReward(price);
-        }
-        return rewards;
+        return calculateReward(transactions);
     }
     @Override
     @Transactional
@@ -92,7 +84,6 @@ public class CustomerServiceImpl implements CustomerService {
             throw new ResourceNotFoundException("...");
         Customer customer = optionalCustomer.get();
         customer.setEmail(c.getEmail());
-//        customer.setRewards(c.getRewards());
         customer.setUserName(c.getUserName());
         customerRepository.save(customer);
         return customer.getId();

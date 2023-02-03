@@ -19,13 +19,11 @@ public class CustomerResponseDTO {
         private Long id;
         private String userName;
         private String email;
-//        private double rewards;
 
         public CustomerDTO(Customer c) {
             this.id = c.getId();
             this.email = c.getEmail();
             this.userName = c.getUserName();
-//            this.rewards = c.getRewards();
         }
     }
 }

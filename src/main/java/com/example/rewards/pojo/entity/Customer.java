@@ -1,5 +1,6 @@
 package com.example.rewards.pojo.entity;
 
+import com.example.rewards.pojo.dto.CustomerResponseDTO.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,10 +24,18 @@ public class Customer {
     @Column
     private String email;
 
-//    @Column
-//    private double rewards;
 
     @OneToMany(mappedBy = "id", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     List<Transaction> customerTransactions;
 
+    public Customer(long id, String name, String email) {
+        this.id = id;
+        this.userName = name;
+        this.email = email;
+    }
+    public Customer(CustomerDTO customerDTO) {
+        this.id = customerDTO.getId();
+        this.email = customerDTO.getEmail();
+        this.userName = customerDTO.getUserName();
+    }
 }
