@@ -28,8 +28,8 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.getTotalRewards(id), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/rewards/{month}")
-    public ResponseEntity<?> getCustomerPointByIdAndMonth(@PathVariable Long id, @PathVariable int month) {
+    @GetMapping("/{id}/rewards")
+    public ResponseEntity<?> getCustomerPointByIdAndMonth(@PathVariable Long id, @RequestParam int month) {
         return new ResponseEntity<>(customerService.getMonthRewards(id, month), HttpStatus.OK);
     }
 
