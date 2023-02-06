@@ -1,5 +1,6 @@
 package com.example.rewards.pojo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ public class Transaction {
     @Column(length = 250)
     private Long id;
 
+    @JsonBackReference // avoid the infinite recursion problem with one-to-many mapping
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="customer_id")
     private Customer customer;
